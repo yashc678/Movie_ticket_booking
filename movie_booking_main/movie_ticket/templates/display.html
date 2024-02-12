@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Movies</title>
+    <!-- Add Bootstrap CSS link -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Customize font styles and center content */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        /* Customize table styles */
+        .table {
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .table th,
+        .table td {
+            font-size: 1.2rem;
+        }
+
+        /* Add some colorful styling */
+        .table thead {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f0f0f0;
+        }
+
+        .table-striped tbody tr:nth-of-type(even) {
+            background-color: #e0e0f0;
+        }
+
+        /* Make the image larger */
+        img {
+            width: 80%; /* Set the image width to 80% of its container */
+            max-width: 800px; /* Set a maximum width for the image if needed */
+            display: block; /* Remove any inline spacing */
+            margin: 0 auto 20px; /* Center the image and add some bottom margin */
+        }
+
+        /* Add back button styles */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/home">
+            <button class="btn btn-secondary back-button" >Back</button>
+        </form>
+        <a href="javascript:history.back()" class="btn btn-secondary back-button">Back</a>
+        <img src="/static/img/movies.jpg" alt="Movie Image"> <!-- Replace "your-image-url.jpg" with the URL of your image -->
+        <h1 class="display-4">Available Movies at Specific Times</h1>
+
+        <!-- Add a form for movie name search -->
+        <form method="POST" action="/search">
+            <div class="form-group">
+                <label for="movieName">Search for Movie:</label>
+                <input type="text" class="form-control" id="movieName" name="movieName" placeholder="Enter movie name">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Available Seat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ i['name'] }}</td>
+                    <td>{{ i['time'] }}</td>
+                    <td>{{ i['qty'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

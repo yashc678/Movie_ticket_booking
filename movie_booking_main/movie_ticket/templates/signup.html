@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Signup</title>
+    <style>
+      body {
+        background-image: url('/static/img/batman.jpg'); /* Replace with your movie background image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: white;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .wrapper {
+        background-color: rgba(0, 0, 0, 0.7); /* Add a semi-transparent black background */
+        color: white;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.7); /* Add shadow */
+        max-width: 600px;
+        width: 100%;
+        padding: 40px;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+
+      .title {
+        background-color: rgba(0, 0, 0, 0.8); /* Darker background for title */
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        border-radius: 10px 10px 0 0;
+        font-size: 30px; /* Larger font size for the title */
+      }
+
+      .row {
+        background-color: transparent;
+        color: white;
+        margin: 20px 0;
+      }
+
+      .btn_signup {
+        background-color: #6bdfff; /* Light blue color for signup */
+        color: white;
+        border: none;
+        padding: 20px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 24px;
+        border-radius: 5px;
+      }
+
+      i.fas {
+        display: none;
+      }
+
+      /* Larger labels (placeholders) and wider input fields */
+      .row input[type="text"],
+      .row input[type="password"] {
+        font-size: 24px;
+        width: 100%; /* Set the width to 100% to make them wide */
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div class="title"><span>Movie Ticket Signup</span></div>
+        <form action="/signup_logic" method="POST">
+          <div class="row">
+            <input type="text" name="firstname" placeholder="Enter Your First Name" required>
+          </div>
+          <div class="row">
+            <input type="text" name="lastname" placeholder="Enter Your Last Name" required>
+          </div>
+          <div class="row">
+            <input type="text" name="username" placeholder="Enter Your UserID" required>
+          </div>
+          <div class="row">
+            <input type="password" name="password" id="password" placeholder="Enter Your Password" required>
+          </div>
+          <div class="row">
+            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
+          </div>
+
+          <div class="row button">
+            <button class='btn_signup' type="submit">Signup</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      // Add client-side password confirmation validation
+      const passwordInput = document.getElementById("password");
+      const confirmPasswordInput = document.getElementById("confirm_password");
+
+      confirmPasswordInput.addEventListener("input", function () {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (password === confirmPassword) {
+          confirmPasswordInput.setCustomValidity("");
+        } else {
+          confirmPasswordInput.setCustomValidity("Passwords do not match");
+        }
+      });
+    </script>
+  </body>
+</html>
